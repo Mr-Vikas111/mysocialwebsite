@@ -3,6 +3,7 @@ certifi==2021.5.30
 charset-normalizer==2.0.3
 dj-static==0.0.6
 Django==3.2.5
+django-modelforms==0.3.0
 gunicorn==20.1.0
 idna==3.2
 Pillow==8.3.1
