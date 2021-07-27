@@ -84,12 +84,13 @@ def loginuser(request):
 
         if user is not None:
             auth.login(request,user)
-
+            messages.success(request,'login Successfully!')
             return render(request,'index.html')
         else:
             messages.info(request,'Invailid credentials')
             return render(request,'login.html')
     else:
+            
         return render(request,'login.html')
    
     return render(request, 'login.html')
