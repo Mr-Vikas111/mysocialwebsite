@@ -1,0 +1,29 @@
+*{ margin: 0px; padding: 0px; }
+
+main{
+		width: 95%;
+		margin: 5px auto;
+		display: grid;
+		grid-template-rows: 40px 700px  60px;
+		grid-template-columns: repeat(3,1fr);
+		grid-gap: 30px;
+}
+.div1{
+    margin-bottom: 10px;
+	background-color: white;
+	grid-column: 1/-1;
+}
+.div2 {
+	font-size: 15px;
+	margin-right: 5px;
+	
+	
+}
+.div3{
+    align-items: centers;
+	background-color: white;
+}.div4{
+
+    color: lightseagreen;
+	background-color: white;
+}

@@ -1,0 +1,146 @@
+
+{% load static %}
+<html>
+<head>
+    <title>Home</title>
+    <style>
+    
+    
+    .divsecond{
+        height:auto;
+        font-size:15px;
+    }
+    
+    
+    </style>
+    <link rel="stylesheet" href="{% static 'webapp/css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<main>
+<div class="div1">{% include 'search.html' %}</div>
+<div class="div2">
+    <div class="alert alert-primary" role="alert" style="text-align:center;font-style:bold;">
+    Profile
+    </div>
+        <i class="fas fa-user-tie fa-3x"></i>
+        <p><lable style="font-size:15px;">Name: {{user.first_name}}<lable></p>
+        <p><lable><i class="far fa-envelope fa-lg"></i> Email: {{user.email}}</lable></p>
+        <p><lable><i class="fas fa-phone-square-alt fa-lg"></i>Mobileno: {{user.username}}</lable></p>
+   
+<button type="button" class="btn btn-info"><a href="logout" style="text-decoration:None;color:black;">Logout</a></button>
+<p>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="desc">{{form.desc}}</div><p>
+    {{form.photo}}<p>
+    <button type="submit" class = "btn btn-danger">Upload</button>
+    </form>
+     <p><p>
+
+
+<div class="d-grid gap-2">
+  <button class="btn btn-primary" type="button"><a href="/uploadimg" style="text-decoration:None;color:white;">Your Connections(<span id="cart">0</span>)</a></button>
+</div>
+    <p>
+    <div class="card-body" id="items" class="Unfriend">
+  </div></p>
+</div>
+</div>
+
+ </div>
+
+
+
+  
+<div class="div3">
+ <div class="alert alert-primary" role="alert" style="text-align:center;font-style:bold;">
+    Post Fields
+    </div>
+    {% for x in img %}
+           <p><div class="icon"><i class="fas fa-user-circle">{{user.first_name}}</i></div>
+            <label style="">{{x.desc}}</lable>
+            <img src="{{x.photo.url}}" alt="" class="card-img-top" height="200px",weight="200px">
+            </p>
+    {% endfor %}</div>
+<div class="div4">
+    <h5>Make Your Connections </h5>
+
+{% for x in data %}
+            <p>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title" id="name{{x.id}}"><i class="fas fa-user-circle"></i>{{x.first_name}}</h5>
+                    <h6 class="card-title" id="email{{x.id}}">Email : {{x.email}}</h5>
+                    <h6 class="card-title" id="username{{x.id}}">Mobileno : {{x.username}}</h5>
+                    <p class="card-text"></p>
+                    <span id="divpr{{x.id}}" class="divpr">
+                    <button id ="{{x.id}}"  class="btn btn-primary cart" >Add Connections</button>
+                    </span>
+                </div>
+                </div>
+                </p>
+                    
+                    {% endfor %}
+</div>
+<script>
+
+console.log('working');
+if (localStorage.getItem('cart')== null){
+    var cart={};
+}
+else{
+    cart=JSON.parse(localStorage.getItem('cart'));
+}
+$('.divpr').on('click','button.cart',function(){
+    var idstr= this.id.toString();
+    if (cart[idstr] != undefined){
+        qty = cart[idstr]+1;
+
+    }else{
+        qty = 1;
+        name= document.getElementById('name'+idstr).innerHTML;
+        cart[idstr]=[qty,name];
+    }
+  
+    updateCart(cart);
+
+    function updateCart(cart){
+        for (var item in cart){
+            document.getElementById('divpr'+ item).innerHTML ="<button id='minus' class='btn btn-primary minus'>friend</button>";
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    }
+
+});
+
+
+</script>
+
+ <script>
+        if (localStorage.getItem('cart')== null){
+                var cart={};
+            }
+            else{
+                cart=JSON.parse(localStorage.getItem('cart'));
+            }
+            console.log(cart);
+            for(item in cart)
+            {
+                let name = cart[item][1]
+                let qty = cart[item][0]
+              
+                mystr = `<h5 class="card-title">${name}</h5>
+                        <button class="btn btn-primary off">Connected</button></p>` 
+            $('#items').append(mystr);
+            }
+    
+    </script>
+</main>
+
+</body>
+</html>
+    
+
+
