@@ -37,7 +37,7 @@ def register(request):
 
         if password1 == confirm_password:
             if User.objects.filter(username=username).exists():
-                messages.info(request,'Username alrady taken')
+                messages.info(request,'MobileNo alrady taken')
                 return render(request,'register.html')
             elif User.objects.filter(email=email).exists():
                 messages.info(request,'email alredy register')
