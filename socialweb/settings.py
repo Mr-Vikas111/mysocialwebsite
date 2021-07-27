@@ -128,3 +128,5 @@ MEDIA_ROOT = BASE_DIR / 'UploadImage'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+STATIC_ROOT = 'staticfiles'
