@@ -72,9 +72,7 @@
     
         <main class="form-signin">
         <form method="post" action="login">
-            {% csrf_token %}
-            <img class="mb-1" src="/static/login1.png" alt="" width="130" height="100">
-            
+            {% csrf_token %}            
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
             <a href="/">Register</a>
             {% if messages %}
