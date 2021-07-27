@@ -84,7 +84,6 @@ def loginuser(request):
 
         if user is not None:
             auth.login(request,user)
-            messages.success(request,'login Successfully!')
 
             return render(request,'index.html')
         else:
